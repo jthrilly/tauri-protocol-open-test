@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">tauri-open-protocol</string>
+    <string name="main_activity_title">tauri-open-protocol</string>
+</resources>

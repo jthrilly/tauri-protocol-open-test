@@ -21,10 +21,10 @@ function App() {
           name: ".netcanvas",
           extensions: ["netcanvas", "zip"],
         },
-        {
-          name: "All Files",
-          extensions: ["*"],
-        },
+        // {
+        //   name: "All Files",
+        //   extensions: ["*"],
+        // },
       ],
     });
     console.log(result);
