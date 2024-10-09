@@ -1,5 +1,5 @@
 import { open } from "@tauri-apps/plugin-dialog";
-import { readFile } from "@tauri-apps/plugin-fs";
+import { readFile, stat } from "@tauri-apps/plugin-fs";
 import { useState } from "react";
 import "./App.css";
 import { TextWriter, Uint8ArrayReader, ZipReader } from "@zip.js/zip.js";
@@ -16,23 +16,27 @@ function App() {
     const result = await open({
       multiple: false,
       directory: false,
-      filters: [
-        {
-          name: ".netcanvas",
-          extensions: ["netcanvas", "zip"],
-        },
-        // {
-        //   name: "All Files",
-        //   extensions: ["*"],
-        // },
-      ],
+      // filters: [
+      //   {
+      //     name: ".netcanvas",
+      //     // extensions: ["netcanvas", "zip"],
+      //     extensions: ["netcanvas"],
+      //   },
+      //   // {
+      //   //   name: "All Files",
+      //   //   extensions: ["*"],
+      //   // },
+      // ],
     });
-    console.log(result);
+
     if (result) {
-      const fileContent = await readFile(result.path);
+      const fileContent = await readFile(result).catch((err) => {
+        console.error(`Error reading file: ${err}`);
+        return null;
+      });
       console.log(fileContent);
 
-      const zipFileReader = new Uint8ArrayReader(fileContent);
+      const zipFileReader = new Uint8ArrayReader(fileContent!);
       const zipReader = new ZipReader(zipFileReader);
 
       const entries = await zipReader.getEntries();
@@ -56,6 +60,7 @@ function App() {
 
   return (
     <div className="container">
+      nuts
       <button onClick={handleOpen}>Choose protocol file</button>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>

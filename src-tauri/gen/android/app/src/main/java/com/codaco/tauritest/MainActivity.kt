@@ -1,3 +1,3 @@
-package com.tauri.dev
+package com.codaco.tauritest
 
 class MainActivity : TauriActivity()

@@ -1,9 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { internalIpV4 } from "internal-ip";
 
-// @ts-expect-error process is a nodejs global
-const mobile = !!/android|ios/.exec(process.env.TAURI_ENV_PLATFORM);
+const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
@@ -15,14 +13,14 @@ export default defineConfig(async () => ({
   clearScreen: false,
   // 2. tauri expects a fixed port, fail if that port is not available
   server: {
-    port: 1420,
+    port: 1423,
     strictPort: true,
-    host: mobile ? "0.0.0.0" : false,
-    hmr: mobile
+    host: host || false,
+    hmr: host
       ? {
           protocol: "ws",
-          host: await internalIpV4(),
-          port: 1421,
+          host: host,
+          port: 1430,
         }
       : undefined,
     watch: {

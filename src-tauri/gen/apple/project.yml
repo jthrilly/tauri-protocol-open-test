@@ -1,6 +1,6 @@
 name: tauri-open-protocol
 options:
-  bundleIdPrefix: com.tauri.dev
+  bundleIdPrefix: com.codaco.tauritest
   deploymentTarget:
     iOS: 13.0
 fileGroups: [../../src]
@@ -11,7 +11,8 @@ settingGroups:
   app:
     base:
       PRODUCT_NAME: tauri-open-protocol
-      PRODUCT_BUNDLE_IDENTIFIER: com.tauri.dev
+      PRODUCT_BUNDLE_IDENTIFIER: com.codaco.tauritest
+      DEVELOPMENT_TEAM: 85EZ69PQHJ
       CODE_SIGN_STYLE: Automatic
 targetTemplates:
   app:
